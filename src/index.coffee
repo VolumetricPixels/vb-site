@@ -1,7 +1,7 @@
 app = require('express')()
 
 # Setup the config
-env = process.env.NODE_ENV
+env = app.settings.env
 env = 'development' unless env
 config = require('../config/config')[env]
 config = require('../config/config')['development'] unless config
