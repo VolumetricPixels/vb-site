@@ -24,6 +24,10 @@ x.set 'views', __dirname + '/../app/views'
 # Load controllers
 app.controllers = require './controllers'
 
+# Load db
+mongoose = require 'mongoose'
+mongoose.connect config.dburl
+
 # Register all routes
 router = app.router = new (require('./router'))(app)
 require('../config/routes')(router)
