@@ -1,8 +1,9 @@
 doctype html
 html
   head
-    != css('foundation')
     != css('normalize')
+    != css('foundation')
+    != css('styles')
 
     != js('jquery')
     != js('modernizr')
@@ -11,3 +12,4 @@ html
     script $(document).foundation()
   body
     include navbar
+    block content

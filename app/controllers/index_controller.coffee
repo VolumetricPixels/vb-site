@@ -1,3 +1,3 @@
 module.exports =
   index: (req, res) ->
-    res.render 'layouts/application.jade'
+    res.render 'index/index'

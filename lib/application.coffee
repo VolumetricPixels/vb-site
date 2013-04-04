@@ -18,7 +18,7 @@ console.log __dirname
 
 # Setup jade
 x.set 'view engine', 'jade'
-x.set 'view options', pretty: false, layout: true
+x.set 'view options', pretty: yes
 x.set 'views', __dirname + '/../app/views'
 
 # Load controllers
