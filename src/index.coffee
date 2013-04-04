@@ -1,6 +1,5 @@
 app = require('express')()
 
-app.get '/', (req, res) ->
-  res.send 'Hello, world!'
+require('./routes')(app)
 
 app.listen 3000
