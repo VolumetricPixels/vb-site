@@ -3,4 +3,4 @@ module.exports =
     port: 3000
 
   production:
-    port: 80
+    port: process.env.PORT || 80
