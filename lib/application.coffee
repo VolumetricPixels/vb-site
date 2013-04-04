@@ -1,13 +1,19 @@
-app = require('express')()
+app = {}
+express = app.express = require('express')()
 
 # Setup the config
-env = app.settings.env
+env = express.settings.env
 env = 'development' unless env
 config = require('../config/config')[env]
 config = require('../config/config')['development'] unless config
+app.config = config
+
+# Load controllers
+app.controllers = require './controllers'
 
 # Register all routes
-require('../config/routes')(app)
+router = app.router = new (require('./router'))(app)
+require('../config/routes')(router)
 
-app.listen config.port
+express.listen config.port
 console.log 'App listening on port ' + config.port
