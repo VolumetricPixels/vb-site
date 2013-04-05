@@ -8,8 +8,14 @@ html
     != js('jquery')
     != js('modernizr')
     != js('foundation')
+    != js('scripts')
 
     script $(document).foundation()
   body
-    include navbar
-    block content
+    .wrapper
+        include navbar
+        block content
+        .push
+    .footer
+      .row
+        p test
