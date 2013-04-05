@@ -1,0 +1,35 @@
+extends ../layouts/application
+
+block content
+  .row
+    h1 Ban against #{ban.player.name}
+    hr
+  .row
+    .large-4.columns
+      h2 Details
+      table(width="100%")
+        tr
+          th Player
+          td= ban.player.name
+        tr
+          th Server
+          td= ban.server.name
+        tr
+          th Reason
+          td= ban.reason
+        tr
+          th Banned by
+          td= ban.admin
+        tr
+          th Date
+          td= ban.date
+        tr
+          th End
+          td= ban.end
+        tr
+          th Global?
+          td= ban.global ? "yes" : "no"
+    .large-8.columns
+      h2 Proof
+      p The proof is in the pudding
+

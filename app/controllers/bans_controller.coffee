@@ -8,3 +8,11 @@ module.exports =
         return
 
       res.render 'bans/index', bans: bans
+
+  show: (req, res) ->
+    Ban.findOne(_id: @id).populate('player').populate('server').exec (err, ban) ->
+      if err or ban is null
+        res.status(404).render 'layouts/404'
+        return
+
+      res.render 'bans/show', ban: ban

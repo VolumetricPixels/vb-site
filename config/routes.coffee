@@ -1,6 +1,7 @@
 module.exports = (router) ->
 
-  router.route '/', 'index'
-  router.route '/about', 'about'
+  router.get '/', 'index'
+  router.get '/about', 'about'
 
-  router.route '/bans', 'bans'
+  router.get '/bans', 'bans'
+  router.get '/bans/:id', 'bans#show'

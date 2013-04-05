@@ -2,26 +2,24 @@ extends ../layouts/application
 
 block content
   .row
-    .large-8.columns
-      h1 Recent bans
-      hr
-      table
-        thead
+    h1 Recent bans
+    hr
+    table(width="100%")
+      thead
+        tr
+          th Player
+          th Server
+          th Reason
+          th Date banned
+          th Banned by
+          th Show
+      tbody
+        each ban in bans
           tr
-            th Player
-            th Server
-            th Reason
-            th Date banned
-            th Banned by
-        tbody
-          each ban in bans
-            tr
-              td= ban.player.name
-              td= ban.server.name
-              td= ban.reason
-              td= ban.date
-              td= ban.admin
-    .large-4.columns
-      h3 Worst people
-      ol
-        li DzineIT
+            td= ban.player.name
+            td= ban.server.name
+            td= ban.reason
+            td= ban.date
+            td= ban.admin
+            td
+              a(href=ban.link) Show ban
