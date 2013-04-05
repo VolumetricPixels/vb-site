@@ -1,4 +1,6 @@
 mongoose = require 'mongoose'
+require './player'
+require './server'
 
 schema = new mongoose.Schema
   player:

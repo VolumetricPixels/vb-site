@@ -1,0 +1,27 @@
+extends ../layouts/application
+
+block content
+  .row
+    .large-8.columns
+      h1 Recent bans
+      hr
+      table
+        thead
+          tr
+            th Player
+            th Server
+            th Reason
+            th Date banned
+            th Banned by
+        tbody
+          each ban in bans
+            tr
+              td= ban.player.name
+              td= ban.server.name
+              td= ban.reason
+              td= ban.date
+              td= ban.admin
+    .large-4.columns
+      h3 Worst people
+      ol
+        li DzineIT
