@@ -1,3 +1,5 @@
+mongoose = require 'mongoose'
+
 schema = new mongoose.Schema
   name: String
 

@@ -1,10 +1,12 @@
 mongoose = require 'mongoose'
-player = require 'player'
-server = require 'server'
 
 schema = new mongoose.Schema
-  player: Player.schema
-  server: Server.schema
+  player:
+    type: mongoose.Schema.ObjectId
+    ref: 'Player'
+  server:
+    type: mongoose.Schema.ObjectId
+    ref: 'Server'
   reason: String
   admin: String
   date: Date
