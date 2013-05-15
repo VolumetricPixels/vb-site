@@ -19,3 +19,6 @@ task 'db:trample', 'clear all the data in the database', ->
   require('./db/trample') ->
     console.log 'Database trampled.'
     process.exit()
+
+task 'server', 'start the server', ->
+  require './bootstrap'
