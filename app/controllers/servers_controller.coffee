@@ -16,5 +16,5 @@ module.exports =
         res.status(404).render 'layouts/404'
         return
 
-      recentBans = Ban.find({server: server._id}).sort('-date').exec (err, bans) ->
+      recentBans = Ban.find({server: server._id}).limit(50).sort('-date').populate('player').exec (err, bans) ->
         res.render 'servers/show', server: server, bans: bans

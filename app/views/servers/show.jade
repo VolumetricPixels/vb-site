@@ -12,12 +12,24 @@ block content
           th Name
           td= server.name
         tr
-          th API Key
-          td= server.apikey
-        tr
           th Ban Count
           td= bans.length
     .large-8.columns
-      h2 Blah
-      p this server sucks
-
+      h2 Ban List
+      table(width="100%")
+        thead
+          tr
+            th Player
+            th Reason
+            th Date banned
+            th Banned by
+            th Show
+        tbody
+          each ban in bans
+            tr
+              td= ban.player.name
+              td= ban.reason
+              td= ban.date
+              td= ban.admin
+              td
+                a(href=ban.link) Show ban
