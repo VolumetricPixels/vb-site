@@ -13,7 +13,8 @@ block content
           td= ban.player.name
         tr
           th Server
-          td= ban.server.name
+          td
+            a(href=ban.server.link)= ban.server.name
         tr
           th Reason
           td= ban.reason
