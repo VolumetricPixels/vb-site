@@ -1,0 +1,23 @@
+extends ../layouts/application
+
+block content
+  .row
+    h1 #{server.name}
+    hr
+  .row
+    .large-4.columns
+      h2 Details
+      table(width="100%")
+        tr
+          th Name
+          td= server.name
+        tr
+          th API Key
+          td= server.apikey
+        tr
+          th Ban Count
+          td= bans.length
+    .large-8.columns
+      h2 Blah
+      p this server sucks
+

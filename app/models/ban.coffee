@@ -15,6 +15,6 @@ schema = new mongoose.Schema
   end: Date
   global: Boolean
 
-schema.virtual('link').get -> "/bans/#{@_id}"
+schema.virtual('link').get -> "/bans/show/#{@_id}"
 
 module.exports = mongoose.model 'Ban', schema
