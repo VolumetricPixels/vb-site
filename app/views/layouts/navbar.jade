@@ -1,33 +1,26 @@
-nav.top-bar
-  ul.title-area
-    li.name
-      h1
-        a(href="/") VolumetricBans
-    li.toggle-topbar.menu-icon
-      a
-        span Menu
+div.navbar.navbar-inverse.navbar-static-top
+  div.navbar-inner
+    div.container
+      a(data-toggle="collapse", data-target=".nav-collapse").btn.btn-navbar
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
 
-  section.top-bar-section
-    ul.left
-      li.divider
-      li
-        a(href="/bans/") Bans
-      li.divider
-      li
-        a(href="/servers/") Servers
-      li.divider
-      li
-        a(href="/disputes/") Disputes
-      li.divider
+      a(href="/").brand VolumetricBans
 
-    ul.right
-      li.divider
-      li
-        a(href="http://volumetricpixels.com/forums/") Forums
-      li.divider
-      li
-        a(href="/about") About
-      li.divider
-      li
-        a(href="/contact") Contact
-      li.divider
+      div.nav-collapse.collapse
+        ul.nav
+          li
+            a(href="/bans/") Bans
+          li
+            a(href="/servers/") Servers
+          li
+            a(href="/disputes/") Disputes
+
+        ul.nav.pull-right
+          li
+            a(href="http://volumetricpixels.com/forums/") Forums
+          li
+            a(href="/about") About
+          li
+            a(href="/contact") Contact

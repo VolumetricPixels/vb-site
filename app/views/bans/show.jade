@@ -3,11 +3,10 @@ extends ../layouts/application
 block content
   .row
     h1 Ban against #{ban.player.name}
-    hr
   .row
-    .large-4.columns
+    .span4
       h2 Details
-      table(width="100%")
+      table.table
         tr
           th Player
           td= ban.player.name
@@ -30,7 +29,7 @@ block content
         tr
           th Global?
           td= ban.global ? "yes" : "no"
-    .large-8.columns
+    .span8
       h2 Proof
       p The proof is in the pudding
 

@@ -3,20 +3,19 @@ extends ../layouts/application
 block content
   .row
     h1 #{server.name}
-    hr
   .row
-    .large-4.columns
+    .span4
       h2 Details
-      table(width="100%")
+      table.table
         tr
           th Name
           td= server.name
         tr
           th Ban Count
           td= banCount
-    .large-8.columns
+    .span8
       h2 Recent Bans
-      table(width="100%")
+      table.table
         thead
           tr
             th Player

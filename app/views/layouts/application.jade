@@ -1,23 +1,27 @@
 doctype html
 html
   head
-    != css('normalize')
-    != css('foundation')
+    != css('bootstrap')
+    != css('bootstrap-responsive')
     != css('styles')
 
     != js('jquery')
-    != js('modernizr')
-    != js('foundation')
+    != js('bootstrap')
     != js('moment')
     != js('scripts')
 
-    script $(document).foundation()
     title Volumetric Bans
+
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
-    .wrapper
-        include navbar
+    div#wrapper
+      include navbar
+      .container
         block content
-        .push
+      .push
+
     .footer
-      .row
-        p Copyright &copy; 2013 Volumetric Pixels.
+      .container
+        p.muted.credit Copyright &copy; 2013 
+          a(href="http://volumetricpixels.com") Volumetric Pixels
+          .
