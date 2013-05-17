@@ -15,6 +15,10 @@ x.use require('connect-assets')()
 # Parse bodies - required for forms
 x.use express.bodyParser()
 
+# Use sessions
+x.use express.cookieParser()
+x.use express.session secret: 'i dont think it matters if my secret is on github'
+
 # Set up static files
 x.use express.static __dirname + '/../public'
 console.log __dirname
