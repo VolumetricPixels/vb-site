@@ -1,0 +1,23 @@
+extends ../layouts/application
+
+block content
+  .row
+    .span-6
+      h1 Login
+      form(name="login", method="post", action="/login").form-horizontal
+        .control-group
+          label(for="user").control-label Username
+          .controls
+            input#user(type="text", placeholder="Username", name="user")
+        .control-group
+          label(for="pass").control-label Password
+          .controls
+            input#pass(type="password", placeholder="Password", name="pass")
+        .control-group
+          .controls
+            label.checkbox
+              input#remember(type="checkbox", name="remember")
+              | Remember me
+          .form-actions
+            button(type="submit").btn.btn-primary Login
+            button(type="button").btn Forgot password?

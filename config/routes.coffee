@@ -4,6 +4,9 @@ module.exports = (router) ->
   router.get '/about', 'about'
   router.get '/contact', 'contact'
 
+  router.get '/login', 'login'
+  router.post '/login', 'login#index_post'
+
   router.get '/bans', 'bans'
   router.get '/bans/:page', 'bans'
   router.get '/bans/show/:id', 'bans#show'

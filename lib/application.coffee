@@ -12,6 +12,9 @@ app.config = config
 # Use connect-assets
 x.use require('connect-assets')()
 
+# Parse bodies - required for forms
+x.use express.bodyParser()
+
 # Set up static files
 x.use express.static __dirname + '/../public'
 console.log __dirname

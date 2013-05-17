@@ -17,5 +17,11 @@ module.exports = class Router
     return theHandler
 
   get: (path, handlerName) ->
+    handler = @_getHandler handlerName
     @app.x.get path, (req, res) =>
-      @_getHandler(handlerName).call req.params, req, res
+      handler.call req.params, req, res
+
+  post: (path, handlerName) ->
+    handler = @_getHandler handlerName
+    @app.x.post path, (req, res) =>
+      handler.call req.params, req, res
