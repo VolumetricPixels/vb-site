@@ -35,6 +35,9 @@ app.controllers = require './controllers'
 mongoose = require 'mongoose'
 mongoose.connect config.dburl
 
+# Load middleware
+require('./middleware')(x)
+
 # Register all routes
 router = app.router = new (require('./router'))(app)
 require('../config/routes')(router)
