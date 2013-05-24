@@ -1,10 +1,25 @@
 extends ../layouts/application
 
+block header
+  != js('form/jquery.form')
+  script
+    $(function(){
+      $("#login").ajaxForm({
+        error: function() {
+          alert("You haven't been logged in.");
+        },
+
+        success: function() {
+          alert("You have been logged in.");
+        }
+      });
+    });
+
 block content
   .row
     .span-6
       h1 Login
-      form(name="login", method="post", action="/login").form-horizontal
+      form#login(name="login", method="post", action="/login").form-horizontal
         .control-group
           label(for="user").control-label Username
           .controls
