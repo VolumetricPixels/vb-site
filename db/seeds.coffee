@@ -1,8 +1,10 @@
 async = require 'async'
+bcrypt = require 'bcrypt'
 
 Ban = require '../app/models/ban'
 Player = require '../app/models/player'
 Server = require '../app/models/server'
+User = require '../app/models/user'
 
 module.exports = (done) ->
   albireox = new Player name: 'albireox'
@@ -24,6 +26,13 @@ module.exports = (done) ->
       global: true
   ]
 
+  
+  albireox_user = new User
+    username: 'albireox'
+    email: 'ianmacalinao@gmail.com'
+    password: hash 'passw0rd'
+    players: [albireox]
+
   async.parallel [
     (cb) -> albireox.save cb,
     (cb) -> dzineit.save cb,
@@ -32,7 +41,11 @@ module.exports = (done) ->
 
     (cb) -> gemcraft.save cb,
     (cb) -> obsidiancraft.save cb,
+
+    (cb) -> albireox_user.save cb
   ], (err, results) ->
     async.forEach bans, (item, callback) ->
       item.save callback
     , done
+
+hash = (password) -> bcrypt.hashSync password, bcrypt.genSaltSync(10)
