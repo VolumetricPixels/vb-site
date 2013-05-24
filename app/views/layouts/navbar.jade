@@ -21,8 +21,13 @@ div.navbar.navbar-inverse.navbar-static-top
           li
             a(href="/contact") Contact
 
-        ul.nav.pull-right
-          li
-            a(href="/login") Login
-          li
-            a(href="/register") Register
+        if user
+          ul.nav.pull-right
+            li
+              a(href="/account")= user.username
+        else
+          ul.nav.pull-right
+            li
+              a(href="/login") Login
+            li
+              a(href="/register") Register

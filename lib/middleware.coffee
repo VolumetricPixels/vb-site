@@ -3,21 +3,43 @@ User = require '../app/models/user'
 module.exports = (app) ->
   # User session middleware
   app.use (req, res, next) ->
-    unless req.session.user is undefined
-      next()
-      return
+    unless req.session.userId is undefined
+      User.findById req.session.userId, (err, user) ->
+        if user
+          req.user = user
+        else
+          req.session.userId = null
 
-    # Check for cookies then login
-    username = req.cookies.user
-    password = req.cookies.pass
-    if username and password
-      # TODO hash
-      User.findOne({username: username, password: password}).exec (err, user) ->
-        unless user
-          next()
-          return
-        req.session.user = user
         next()
       return
 
+    # Check for cookies then login
+    keyString = req.cookies.key
+
+    unless key
+      return next()
+
+    key = JSON.parse keyString
+
+    username = key.username
+    password = key.password
+
+    if username and password
+      User.verifyLogin username, password, (err, user) ->
+        if user
+          req.session.userId = user._id.toString()
+          req.user = user
+        else
+          res.clearCookie 'key'
+        next()
+    else
+      next()
+
+  # Global variables in templates middleware
+  app.use (req, res, next) ->
+    _render = res.render
+    res.render = (view, options, fn) ->
+      options = options || {}
+      options.user = req.user || null
+      _render.call res, view, options, fn
     next()

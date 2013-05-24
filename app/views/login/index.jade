@@ -6,19 +6,24 @@ block header
     $(function(){
       $("#login").ajaxForm({
         error: function() {
-          alert("You haven't been logged in.");
+          $(".alert").alert("close");
+          $("#errors").append(
+            '<div class="alert alert-error">Invalid username or password.</div>'
+          );
         },
 
         success: function() {
-          alert("You have been logged in.");
+          window.location = "/";
         }
       });
     });
 
 block content
   .row
-    .span-6
+    .span6.offset3
       h1 Login
+      hr
+      #errors
       form#login(name="login", method="post", action="/login").form-horizontal
         .control-group
           label(for="user").control-label Username
