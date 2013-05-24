@@ -19,7 +19,7 @@ module.exports =
           username: body.user
           password: body.pass
 
-        res.cookie 'key'. key, { expires: new Date(Date.now() + 2 * 604800000), path: '/' }
+        res.cookie 'key', key, { expires: new Date(Date.now() + 2 * 604800000), path: '/' }
 
       req.session.userId = user._id.toString()
       return res.send 200

@@ -16,7 +16,7 @@ module.exports = (app) ->
     # Check for cookies then login
     keyString = req.cookies.key
 
-    unless key
+    unless keyString
       return next()
 
     key = JSON.parse keyString
