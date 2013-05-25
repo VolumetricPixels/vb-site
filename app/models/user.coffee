@@ -27,7 +27,7 @@ schema.statics.register = (username, email, cb) ->
       {email: email}
     ]
 
-  @findOne query, (err, user) ->
+  @findOne query, (err, user) =>
     if user
       if user.username is username
         cb 'Username is already in use.', null
@@ -35,7 +35,7 @@ schema.statics.register = (username, email, cb) ->
         cb 'Email is already in use.', null
       return
     
-    @randomPass (pass) ->
+    @randomPass (pass) =>
       user = new User
         username: username
         email: email
@@ -60,8 +60,8 @@ schema.statics.register = (username, email, cb) ->
           Regards,
           The Volumetric Bans Team          
         """
-      , (success, message) ->
-        if success
+      , (success, message) =>
+        if success0
           cb null, user
         else
           cb 'Error with email delivery', user
