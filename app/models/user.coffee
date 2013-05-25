@@ -36,35 +36,36 @@ schema.statics.register = (username, email, cb) ->
       return
     
     @randomPass (pass) =>
-      user = new User
+      user = new this
         username: username
         email: email
         password: pass
 
-      # Email them
-      sendgrid.send
-        to: email
-        from: 'Volumetric Bans <support@volumetricbans.com>'
-        subject: 'Your login information'
-        text: """
-          Dear #{username},
+      user.save (err, user) =>
+        # Email them
+        sendgrid.send
+          to: email
+          from: 'Volumetric Bans <support@volumetricbans.com>'
+          subject: 'Your login information'
+          text: """
+            Dear #{username},
 
-          Thank you for registering an account with Volumetric Bans.
-          Your login details are as follows:
+            Thank you for registering an account with Volumetric Bans.
+            Your login details are as follows:
 
-             Username: #{username}
-             Password: #{pass}
+               Username: #{username}
+               Password: #{pass}
 
-          You can login to your account at http://volumetricbans.com/login.
+            You can login to your account at http://volumetricbans.com/login.
 
-          Regards,
-          The Volumetric Bans Team          
-        """
-      , (success, message) =>
-        if success0
-          cb null, user
-        else
-          cb 'Error with email delivery', user
+            Regards,
+            The Volumetric Bans Team          
+          """
+        , (success, message) =>
+          if success0
+            cb null, user
+          else
+            cb 'Error with email delivery', user
 
 
 schema.statics.verifyLogin = (username, password, cb) ->
