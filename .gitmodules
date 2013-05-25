@@ -3,4 +3,4 @@
 	url = git://github.com/twitter/bootstrap.git
 [submodule "assets/js/form"]
 	path = assets/js/form
-	url = git@github.com:malsup/form.git
+	url = git://github.com/malsup/form.git
