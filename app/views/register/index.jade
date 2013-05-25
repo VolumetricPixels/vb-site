@@ -1,0 +1,52 @@
+extends ../layouts/application
+
+block header
+  != js('form/jquery.form')
+  script
+    $(function(){
+      $("#register").ajaxForm({
+        error: function(xhr) {
+          $(".alert").alert("close");
+          $("#errors").append(
+            '<div class="alert alert-error">' + xhr.responseText + '</div>'
+          );
+        },
+
+        success: function() {
+          $("#registerSuccess").modal('show');
+        }
+      });
+    });
+
+block content
+  .row
+    .span6.offset3
+      h1 Register
+      hr
+      p.
+        Register by choosing a username and email address of your choice. 
+        A randomly generated password will be sent to you upon registration.
+      #errors
+      form#register(name="register", method="post", action="/register").form-horizontal
+        .control-group
+          label(for="user").control-label Username
+          .controls
+            input#user(type="text", placeholder="Username", name="user")
+        .control-group
+          label(for="email").control-label Email
+          .controls
+            input#email(type="text", placeholder="Email", name="email")
+        .form-actions
+          button(type="submit").btn.btn-primary
+            i.icon-briefcase.icon-white
+            |  Register
+
+  #registerSuccess.modal.hide.fade
+    .modal-header
+      h3 Registration Instructions
+    .modal-body
+      p.
+        An email has been sent to the address provided containing your 
+        password. Don't forget to change your password after logging in.
+    .modal-footer
+      a(href="/login").btn.btn-primary Proceed to login

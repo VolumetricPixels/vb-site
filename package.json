@@ -19,7 +19,6 @@
         "sendgrid": "0.2.1"
     },
 
-
     "devDependencies": {
         "should": "*",
         "mocha": "*"
