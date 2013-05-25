@@ -35,8 +35,37 @@ schema.statics.register = (username, email, cb) ->
         cb 'Email is already in use.', null
       return
     
-    # Not in use
-    cb null, null
+    @randomPass (pass) ->
+      user = new User
+        username: username
+        email: email
+        password: pass
+
+      # Email them
+      sendgrid.send
+        to: email
+        from: 'Volumetric Bans <support@volumetricbans.com>'
+        subject: 'Your login information'
+        text: """
+          Dear #{username},
+
+          Thank you for registering an account with Volumetric Bans.
+          Your login details are as follows:
+
+             Username: #{username}
+             Password: #{pass}
+
+          You can login to your account at http://volumetricbans.com/login.
+
+          Regards,
+          The Volumetric Bans Team          
+        """
+      , (success, message) ->
+        if success
+          cb null, user
+        else
+          cb 'Error with email delivery', user
+
 
 schema.statics.verifyLogin = (username, password, cb) ->
   @findOne {username: username.toLowerCase()}, (err, user) ->
