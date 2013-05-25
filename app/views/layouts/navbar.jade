@@ -23,8 +23,15 @@ div.navbar.navbar-static-top
 
         if user
           ul.nav.pull-right
-            li
-              a(href="/account")= user.username
+            li.dropdown
+              a(href="#", data-toggle="dropdown").dropdown-toggle= user.username
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href="/profile") My Profile
+                li.divider
+                li
+                  a(href="/logout") Logout
         else
           ul.nav.pull-right
             li
