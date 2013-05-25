@@ -1,7 +1,7 @@
 bcrypt = require 'bcrypt'
 crypto = require 'crypto'
 mongoose = require 'mongoose'
-sendgrid = new require('sendgrid').SendGrid process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD
+emailModule = require '../../lib/email'
 
 schema = new mongoose.Schema
   username: String
@@ -36,36 +36,37 @@ schema.statics.register = (username, email, cb) ->
       return
     
     @randomPass (pass) =>
-      user = new this
-        username: username
-        email: email
-        password: pass
+      bcrypt.hash pass, 10, (err, hash) =>
+        user = new this
+          username: username
+          email: email
+          password: hash
 
-      user.save (err, user) =>
-        # Email them
-        sendgrid.send
-          to: email
-          from: 'Volumetric Bans <support@volumetricbans.com>'
-          subject: 'Your login information'
-          text: """
-            Dear #{username},
+        user.save (err, user) =>
+          # Email them
+          emailModule.send
+            to: email
+            from: 'support@volumetricbans.com'
+            subject: 'Your login information'
+            text: """
+              Dear #{username},
 
-            Thank you for registering an account with Volumetric Bans.
-            Your login details are as follows:
+              Thank you for registering an account with Volumetric Bans.
+              Your login details are as follows:
 
-               Username: #{username}
-               Password: #{pass}
+                 Username: #{username}
+                 Password: #{pass}
 
-            You can login to your account at http://volumetricbans.com/login.
+              You can login to your account at http://volumetricbans.com/login.
 
-            Regards,
-            The Volumetric Bans Team          
-          """
-        , (success, message) =>
-          if success0
-            cb null, user
-          else
-            cb 'Error with email delivery', user
+              Regards,
+              The Volumetric Bans Team          
+            """
+          , (success, message) =>
+            if success
+              cb null, user
+            else
+              cb 'Error with email delivery', user
 
 
 schema.statics.verifyLogin = (username, password, cb) ->

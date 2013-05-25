@@ -35,6 +35,9 @@ app.controllers = require './controllers'
 mongoose = require 'mongoose'
 mongoose.connect config.dburl
 
+# Load email
+app.email = require './email'
+
 # Load middleware
 require('./middleware')(x)
 
