@@ -7,6 +7,8 @@ module.exports = (router) ->
   router.get '/login', 'login'
   router.post '/login', 'login#index_post'
 
+  router.get '/logout', 'logout'
+
   router.get '/bans', 'bans'
   router.get '/bans/:page', 'bans'
   router.get '/bans/show/:id', 'bans#show'
