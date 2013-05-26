@@ -8,9 +8,16 @@ block content
   .row
     .span4
       h2 Profile
-      form#changeEmail(name="email", action="/account", method="post").form-horizontal
+      form#email(name="email", action="/account", method="post").form-horizontal
         .control-group
-          label(for="current").control-label Username
+          p.control-label Profile Picture
+          .controls
+            a(href="http://gravatar.com")
+              img(src=user.gravatar({s: 150})).img-polaroid
+            small Change on 
+              a(href="gravatar.com") gravatar.com
+        .control-group
+          p.control-label Username
           .controls
             span.input-medium.uneditable-input= user.username
         .control-group
@@ -22,7 +29,7 @@ block content
             i.icon-save
             |  Save
       h2 Password
-      form#changePass(name="pass", action="/account", method="post").form-horizontal
+      form#email(name="pass", action="/account", method="post").form-horizontal
         .control-group
           label(for="current").control-label Current Password
           .controls

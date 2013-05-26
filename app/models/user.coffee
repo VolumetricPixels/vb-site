@@ -1,5 +1,6 @@
 bcrypt = require 'bcrypt'
 crypto = require 'crypto'
+gravatar = require 'gravatar'
 mongoose = require 'mongoose'
 emailModule = require '../../lib/email'
 
@@ -80,6 +81,8 @@ schema.statics.verifyLogin = (username, password, cb) ->
         return cb(err, null)
 
       return cb(err, user)
+
+schema.methods.gravatar = (opts) -> gravatar.url @email, opts
 
 schema.pre 'save', (next) ->
   @username = @username.toLowerCase()
