@@ -9,6 +9,7 @@ module.exports = (router) ->
   router.get '/register', 'register'
   router.post '/register', 'register#index_post'
   router.get '/account', 'account'
+  router.post '/account', 'account#index_post'
 
   router.get '/logout', 'logout'
 
