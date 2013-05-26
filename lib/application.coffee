@@ -4,13 +4,19 @@ x = app.x = express()
 
 # Setup the config
 env = x.settings.env
-env = 'development' unless env
+app.env = env = 'development' unless env
 config = require('../config/config')[env]
 config = require('../config/config')['development'] unless config
 app.config = config
 
 # Use connect-assets
-x.use require('connect-assets')()
+if config.fastAssets
+  opts =
+    detectChanges: no
+else
+  opts = {}
+
+x.use require('connect-assets') opts
 
 # Parse bodies - required for forms
 x.use express.bodyParser()
