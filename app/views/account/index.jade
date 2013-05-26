@@ -6,9 +6,39 @@ block content
       h1 Account
       hr
   .row
+    .span4
+      h2 Profile
+      form#changeEmail(name="email", action="/account", method="post").form-horizontal
+        .control-group
+          label(for="current").control-label Username
+          .controls
+            span.input-medium.uneditable-input= user.username
+        .control-group
+          label(for="email").control-label Email
+          .controls
+            input#email(type="text", placeholder=user.email, name="email[email]").input-medium
+        .form-actions
+          button(type="submit").btn.btn-primary
+            i.icon-save
+            |  Save
+      h2 Password
+      form#changePass(name="pass", action="/account", method="post").form-horizontal
+        .control-group
+          label(for="current").control-label Current Password
+          .controls
+            input#current(type="password", placeholder="Current Password", name="pass[current]").input-medium
+        .control-group
+          label(for="pass").control-label New Password
+          .controls
+            input#pass(type="password", placeholder="New Password", name="pass[new]").input-medium
+        .control-group
+          label(for="confirm").control-label Confirm Password
+          .controls
+            input#confirm(type="password", placeholder="Confirm Password", name="pass[confirm]").input-medium
+        .form-actions
+          button(type="submit").btn.btn-primary
+            i.icon-save
+            |  Save
     .span8
       h2 Servers
-      p todo
-    .span4
-      h2 Password
-      p todo
+      p Todo list a million servers
