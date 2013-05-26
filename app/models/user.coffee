@@ -47,7 +47,8 @@ schema.statics.register = (username, email, cb) ->
           # Email them
           emailModule.send
             to: email
-            from: 'support@volumetricbans.com'
+            from: 'register@volumetricbans.com'
+            fromname: 'VolumetricBans'
             subject: 'Your login information'
             text: """
               Dear #{username},
