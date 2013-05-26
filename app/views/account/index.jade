@@ -1,5 +1,16 @@
 extends ../layouts/application
 
+block header
+  != js('form/jquery.form')
+  script
+    var forms;
+    $(function(){
+      forms = {
+        email: new Form('email'),
+        pass: new Form('pass')
+      };
+    });
+
 block content
   .row
     .span12
@@ -8,6 +19,7 @@ block content
   .row
     .span4
       h2 Profile
+      #emailErrors
       form#email(action="/account", method="post").form-horizontal
         .control-group
           p.control-label Profile Picture
@@ -29,6 +41,7 @@ block content
             i.icon-save
             |  Save
       h2 Password
+      #passErrors
       form#pass(action="/account", method="post").form-horizontal
         .control-group
           label(for="current").control-label Current Password

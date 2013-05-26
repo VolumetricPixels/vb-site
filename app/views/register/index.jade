@@ -4,18 +4,7 @@ block header
   != js('form/jquery.form')
   script
     $(function(){
-      $("#register").ajaxForm({
-        error: function(xhr) {
-          $(".alert").alert("close");
-          $("#errors").append(
-            '<div class="alert alert-error">' + xhr.responseText + '</div>'
-          );
-        },
-
-        success: function() {
-          $("#registerSuccess").modal('show');
-        }
-      });
+      new Form('register');
     });
 
 block content
@@ -26,7 +15,7 @@ block content
       p.
         Register by choosing a username and email address. 
         A randomly generated password will be sent to you upon registration.
-      #errors
+      #registerErrors
       form#register(name="register", method="post", action="/register").form-horizontal
         .control-group
           label(for="user").control-label Username

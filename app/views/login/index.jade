@@ -4,18 +4,7 @@ block header
   != js('form/jquery.form')
   script
     $(function(){
-      $("#login").ajaxForm({
-        error: function() {
-          $(".alert").alert("close");
-          $("#errors").append(
-            '<div class="alert alert-error">Invalid username or password.</div>'
-          );
-        },
-
-        success: function() {
-          window.location = "/";
-        }
-      });
+      new Form('login');
     });
 
 block content
@@ -23,7 +12,7 @@ block content
     .span6.offset3
       h1 Login
       hr
-      #errors
+      #loginErrors
       form#login(name="login", method="post", action="/login").form-horizontal
         .control-group
           label(for="user").control-label Username
