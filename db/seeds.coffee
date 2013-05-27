@@ -27,9 +27,9 @@ module.exports = (done) ->
   ]
 
   
-  albireox_user = new User
-    username: 'albireox'
-    email: 'ianmacalinao@gmail.com'
+  test_user = new User
+    username: 'test'
+    email: 'test@gmail.com'
     password: hash 'passw0rd'
     players: [albireox]
 
@@ -42,7 +42,7 @@ module.exports = (done) ->
     (cb) -> gemcraft.save cb,
     (cb) -> obsidiancraft.save cb,
 
-    (cb) -> albireox_user.save cb
+    (cb) -> test_user.save cb
   ], (err, results) ->
     async.forEach bans, (item, callback) ->
       item.save callback
