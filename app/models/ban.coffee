@@ -10,7 +10,9 @@ schema = new mongoose.Schema
     type: mongoose.Schema.ObjectId
     ref: 'Server'
   reason: String
-  admin: String
+  by:
+    type: mongoose.Schema.ObjectId
+    ref: 'Player'
   date: Date
   end: Date
   global: Boolean

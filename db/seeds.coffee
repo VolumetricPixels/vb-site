@@ -19,8 +19,8 @@ module.exports = (done) ->
     new Ban
       player: albireox
       server: gemcraft
-      reason: 'griefing'
-      admin: 'acidsin'
+      reason: 'advertising obsidiancraft and griefing'
+      by: dyrus
       date: new Date("2013-04-03 13:23:15")
       end: new Date("2013-04-04 13:23:15")
       global: true
@@ -32,6 +32,7 @@ module.exports = (done) ->
     email: 'test@gmail.com'
     password: hash 'passw0rd'
     players: [albireox]
+    servers: [obsidiancraft]
 
   async.parallel [
     (cb) -> albireox.save cb,
