@@ -16,9 +16,12 @@ npm test
 
 It is very easy to run the website on your own computer. You just need to:
 
-1. Install [MongoDB](http://www.mongodb.org/) and run it
-2. Seed the database - `cake db:seed`
-3. Run the server - `cake server`
+1. Install [node.js](http://nodejs.org)
+2. Install coffee-script with `npm install -g coffeescript`
+3. Install [MongoDB](http://www.mongodb.org/) and run it
+4. Install dependencies - `npm install -l`
+5. Seed the database - `cake db:seed`
+6. Run the server - `cake server`
 
 The database needs to be seeded to be able to test everything, as new users
 cannot be created without SendGrid. (yet)
