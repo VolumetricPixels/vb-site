@@ -1,4 +1,4 @@
-# vb-site [![Build Status](https://travis-ci.org/VolumetricPixels/vb-bans.png)](https://travis-ci.org/VolumetricPixels/vb-bans)
+# vb-site [![Build Status](https://travis-ci.org/VolumetricPixels/vb-site.png)](https://travis-ci.org/VolumetricPixels/vb-site)
 
 The code to the VolumetricBans website.
 
@@ -25,8 +25,10 @@ cannot be created without SendGrid. (yet)
 
 ### On Heroku
 
-This website is built to run on [Heroku](http://heroku.com). The following is a set of commands
-you can run to get the website working properly on a new Heroku instance.
+This website is built to run on [Heroku](http://heroku.com). You can test 
+everything in this site using only the free plans. The following is a set of 
+commands you can run to get the website working properly on a new Heroku 
+instance.
 
 ```
 heroku create
