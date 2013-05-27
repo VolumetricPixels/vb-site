@@ -1,3 +1,4 @@
+exec = require('child_process').exec
 mongoose = require 'mongoose'
 
 # Setup the config
@@ -22,3 +23,8 @@ task 'db:trample', 'clear all the data in the database', ->
 
 task 'server', 'start the server', ->
   require './bootstrap'
+
+task 'test', 'run unit tests', ->
+  exec 'NODE_ENV=test ./node_modules/mocha/bin/mocha ./test/*.coffee', (err, out) ->
+    throw err if err
+    console.log out
