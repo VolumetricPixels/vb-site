@@ -5,8 +5,8 @@ mongoose = require 'mongoose'
 emailModule = require '../../lib/email'
 
 schema = new mongoose.Schema
-  username: type: String, required: yes
-  email: type: String, required: yes
+  username: type: String, required: yes, unique: yes
+  email: type: String, required: yes, unique: yes
   password: type: String, required: yes # Hash
   players:
     type: [mongoose.Schema.ObjectId]
