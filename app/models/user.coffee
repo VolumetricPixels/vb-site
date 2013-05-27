@@ -37,11 +37,11 @@ schema.statics.register = (username, email, cb) ->
       return
     
     @randomPass (pass) =>
-      bcrypt.hash pass, 10, (err, hash) =>
-        user = new this
-          username: username
-          email: email
-          password: hash
+      user = new this
+        username: username
+        email: email
+
+      user.setPassword pass, =>
 
         user.save (err, user) =>
           # Email them
@@ -77,13 +77,22 @@ schema.statics.verifyLogin = (username, password, cb) ->
       return cb(err, null)
 
     # Password validation
-    bcrypt.compare password, user.password, (err, res) ->
+    user.checkPassword password, (err, res) ->
       if err or not res
         return cb(err, null)
 
       return cb(err, user)
 
 schema.methods.gravatar = (opts) -> gravatar.url @email, opts
+
+schema.methods.checkPassword = (password, cb) ->
+  bcrypt.compare password, @password, (err, res) ->
+    cb err, res
+
+schema.methods.setPassword = (password, cb) ->
+  bcrypt.hash password, 10, (err, hash) =>
+    @password = hash
+    @save cb
 
 schema.pre 'save', (next) ->
   @username = @username.toLowerCase()

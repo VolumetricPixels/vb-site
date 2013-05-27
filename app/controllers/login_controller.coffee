@@ -14,7 +14,7 @@ module.exports =
 
     User.verifyLogin body.user, body.pass, (err, user) ->
       unless user
-        return res.send 400
+        return res.send 'Invalid username or password.', 400
 
       # TODO implement an actually secure system
       if body.remember
@@ -25,4 +25,4 @@ module.exports =
         res.cookie 'key', key, { expires: new Date(Date.now() + 2 * 604800000), path: '/' }
 
       req.session.userId = user._id.toString()
-      return res.send 'Invalid username or password.', 200
+      return res.send 200
