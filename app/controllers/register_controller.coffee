@@ -2,6 +2,9 @@ User = require '../models/user'
 
 module.exports =
   index: (req, res) ->
+    if req.user
+      res.redirect '/'
+
     res.render 'register/index'
 
   index_post: (req, res) ->

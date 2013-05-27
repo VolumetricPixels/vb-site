@@ -14,7 +14,7 @@ $ ->
   $(".date").html (index, oldHtml) -> moment(oldHtml).format('MMMM Do YYYY, h:mm a')
 
 window.Form = class Form
-  constructor: (formName, @refresh=yes) ->
+  constructor: (formName, @target) ->
     @el = $ "##{formName}"
     @errorEl = $ "##{formName}Errors"
 
@@ -24,8 +24,10 @@ window.Form = class Form
         @error xhr.responseText
 
       success: =>
-        if @refresh
+        unless @target
           window.location.reload()
+        else if target isnt 'stay'
+          window.location = @target
 
   error: (error) ->
     @errorEl.append '<div class="alert alert-error">' + error + '</div>'

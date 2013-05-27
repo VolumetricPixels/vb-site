@@ -3,7 +3,7 @@ User = require '../models/user'
 module.exports =
   index: (req, res) ->
     unless req.user
-      return res.render 'login/index'
+      return res.render 'login/index', target: (req.query.target || '/')
 
     res.redirect '/'
 
