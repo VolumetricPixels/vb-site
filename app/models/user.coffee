@@ -11,6 +11,9 @@ schema = new mongoose.Schema
   players:
     type: [mongoose.Schema.ObjectId]
     ref: 'Player'
+  servers:
+    type: [mongoose.Schema.ObjectId]
+    ref: 'Server'
 
 schema.statics.randomPass = (cb) ->
   crypto.randomBytes 6, (ex, buf) ->
