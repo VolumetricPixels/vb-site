@@ -12,8 +12,15 @@ module.exports = (done) ->
   maxorq = new Player name: 'Maxorq'
   dyrus = new Player name: 'Dyrus'
 
-  gemcraft = new Server name: 'GemCraft', apikey: 'x23fseklfsdfms'
-  obsidiancraft = new Server name: 'ObsidianCraft', apikey: '==2313ASDASD'
+  gemcraft = new Server
+    name: 'GemCraft'
+    ip: 'play.gemcraft.net'
+    apikey: 'x23fseklfsdfms'
+  
+  obsidiancraft = new Server
+    name: 'ObsidianCraft'
+    ip: 'play.obsidiancraft.net'
+    apikey: '==2313ASDASD'
 
   bans = [
     new Ban

@@ -1,7 +1,8 @@
 mongoose = require 'mongoose'
 
 schema = new mongoose.Schema
-  name: String
+  name: type: String
+  ip: type: String, required: yes
   apikey: String
 
 schema.virtual('link').get -> "/servers/show/#{@_id}"
