@@ -5,6 +5,6 @@ schema = new mongoose.Schema
   ip: type: String, required: yes
   apikey: String
 
-schema.virtual('link').get -> "/servers/show/#{@_id}"
+schema.virtual('link').get -> "/servers/#{@_id}"
 
 module.exports = mongoose.model 'Server', schema
