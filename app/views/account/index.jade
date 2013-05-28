@@ -60,16 +60,30 @@ block content
             i.icon-save
             |  Save
     .span8
+      h2 Minecraft Accounts
+      if user.players
+        table.table.table-striped
+          thead
+            tr
+              th Player Name
+              th Actions
+          tbody
+            each player in user.players
+              tr
+                td= player.name
+                td Delete
+
       h2 Servers
       if user.servers
         table.table.table-striped
-          tr
-            th Name
-            th IP
-            th API Key
-          each server in user.servers
+          thead
             tr
-              td= server.name
-              td= server.ip
-              td= server.apikey
-
+              th Name
+              th IP
+              th API Key
+          tbody
+            each server in user.servers
+              tr
+                td= server.name
+                td= server.ip
+                td= server.apikey

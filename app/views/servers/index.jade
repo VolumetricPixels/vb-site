@@ -10,13 +10,11 @@ block content
           tr
             th Server Name
             th IP
-            th API Key
             th Show
         tbody
           each server in servers
             tr
               td= server.name
               td= server.ip
-              td= server.apikey
               td
                 a(href=server.link) Show server

@@ -8,12 +8,15 @@ schema = new mongoose.Schema
   username: type: String, required: yes, unique: yes
   email: type: String, required: yes, unique: yes
   password: type: String, required: yes # Hash
-  players:
-    type: [mongoose.Schema.ObjectId]
+  players: [
+    type: mongoose.Schema.ObjectId
     ref: 'Player'
-  servers:
-    type: [mongoose.Schema.ObjectId]
+  ]
+
+  servers: [
+    type: mongoose.Schema.ObjectId
     ref: 'Server'
+  ]
 
 schema.statics.randomPass = (cb) ->
   crypto.randomBytes 6, (ex, buf) ->
