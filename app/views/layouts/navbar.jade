@@ -31,7 +31,8 @@ div.navbar.navbar-static-top
                   a(href="/account") Account
                 li.divider
                 li
-                  a(href="/logout")
+                  form#logout(action="/logout", method="post")
+                  a(href="#", onclick="$('#logout').submit()")
                     i.icon-signout
                     |  Logout
         else

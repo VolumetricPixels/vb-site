@@ -12,6 +12,7 @@ module.exports = (router) ->
   router.post '/account', 'account#index_post'
 
   router.get '/logout', 'logout'
+  router.post '/logout', 'logout#index_post'
 
   router.get '/bans', 'bans'
   router.get '/bans/:id', 'bans#show'

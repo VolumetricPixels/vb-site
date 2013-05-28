@@ -1,0 +1,10 @@
+extends ../layouts/application
+
+block content
+  .row
+    .span12
+      h1 Log Out
+      hr
+      p Logging out will clear your cookies. Wait -- how did you even get to this page? o_0
+      form(action="/logout", method="post")
+        button(type="submit").btn.btn-primary Log Out
