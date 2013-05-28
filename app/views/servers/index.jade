@@ -2,17 +2,21 @@ extends ../layouts/application
 
 block content
   .row
-    h1 Server list
-    table.table.table-striped
-      thead
-        tr
-          th Server Name
-          th API Key
-          th Show
-      tbody
-        each server in servers
+    .span12
+      h1 Server list
+      hr
+      table.table.table-striped
+        thead
           tr
-            td= server.name
-            td= server.apikey
-            td
-              a(href=server.link) Show server
+            th Server Name
+            th IP
+            th API Key
+            th Show
+        tbody
+          each server in servers
+            tr
+              td= server.name
+              td= server.ip
+              td= server.apikey
+              td
+                a(href=server.link) Show server
