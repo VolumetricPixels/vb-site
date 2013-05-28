@@ -65,13 +65,16 @@ block content
         table.table.table-striped
           thead
             tr
-              th Player Name
+              th(width="100%") Player Name
               th Actions
           tbody
             each player in user.players
               tr
                 td= player.name
-                td Delete
+                td
+                  a#deletePlayer(href="#", data-player=player._id).btn.btn-danger
+                    i.icon-trash
+                    | &nbsp;Delete
 
       h2 Servers
       if user.servers
@@ -81,9 +84,18 @@ block content
               th Name
               th IP
               th API Key
+              th Actions
           tbody
             each server in user.servers
               tr
-                td= server.name
+                td: a(href=server.link)= server.name
                 td= server.ip
                 td= server.apikey
+                td
+                  a#editServer(href="#", data-server=server._id).btn
+                    i.icon-pencil
+                    | &nbsp;Edit
+                  | &nbsp;
+                  a#deleteServer(href="#", data-server=server._id).btn.btn-danger
+                    i.icon-trash
+                    | &nbsp;Delete
