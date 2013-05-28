@@ -59,7 +59,6 @@ block content
           button(type="submit").btn.btn-primary
             i.icon-save
             |  Save
-    .span8
       h2 Minecraft Accounts
       if user.players
         table.table.table-striped
@@ -75,6 +74,7 @@ block content
                   a#deletePlayer(href="#", data-player=player._id).btn.btn-danger
                     i.icon-trash
                     | &nbsp;Delete
+    .span8
 
       h2 Servers
       if user.servers
