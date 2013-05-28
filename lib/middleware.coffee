@@ -4,7 +4,7 @@ module.exports = (app) ->
   # User session middleware
   app.use (req, res, next) ->
     unless req.session.userId is undefined
-      User.findById req.session.userId, (err, user) ->
+      User.findById(req.session.userId).populate('players').populate('servers').exec (err, user) ->
         if user
           req.user = user
         else

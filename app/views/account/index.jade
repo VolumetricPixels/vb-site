@@ -61,4 +61,15 @@ block content
             |  Save
     .span8
       h2 Servers
-      p Todo list a million servers
+      if user.servers
+        table.table.table-striped
+          tr
+            th Name
+            th IP
+            th API Key
+          each server in user.servers
+            tr
+              td= server.name
+              td ip
+              td= server.apikey
+
