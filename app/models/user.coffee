@@ -75,7 +75,7 @@ schema.statics.register = (username, email, cb) ->
 
 
 schema.statics.verifyLogin = (username, password, cb) ->
-  @findOne {username: username.toLowerCase()}, (err, user) ->
+  @findOne(username: username.toLowerCase()).populate('players').populate('servers').exec (err, user) ->
     if err or not user
       return cb(err, null)
 
