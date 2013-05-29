@@ -27,7 +27,6 @@ x.use express.session secret: 'i dont think it matters if my secret is on github
 
 # Set up static files
 x.use express.static __dirname + '/../public'
-console.log __dirname
 
 # Setup jade
 x.set 'view engine', 'jade'

@@ -10,6 +10,6 @@ files = fs.readdirSync 'app/controllers/'
 for file in files
   controllerPath = path.join __dirname, '../app/controllers/', file 
   unless fs.statSync(controllerPath).isDirectory()
-    controllers[path.basename(file, '_controller.coffee')] = require controllerPath
+    controllers[path.basename(file, '.coffee')] = require controllerPath
 
 module.exports = controllers
