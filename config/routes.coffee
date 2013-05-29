@@ -24,10 +24,10 @@ module.exports = (router) ->
   router.get '/servers/:id', 'servers#show'
 
   # Query
-  router.all '/query', 'query'
-  router.all '/query/bans/:action', 'query#bans'
-  router.all '/query/data/:action', 'query#data'
-  router.all '/query/players/:action', 'query#players'
-  router.all '/query/servers/:action', 'query#servers'
+  router.get '/query', 'query'
+  router.get '/query/update', 'query#update'
+  router.get '/query/isGlobalBanned', 'query#isGlobalBanned'
+  router.post '/query/ban', 'query#ban'
+  router.post '/query/unban', 'query#unban'
 
   router.all '*', '404'

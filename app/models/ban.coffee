@@ -10,7 +10,7 @@ schema = new mongoose.Schema
     type: mongoose.Schema.ObjectId
     ref: 'Server'
   reason: String
-  by:
+  issuer:
     type: mongoose.Schema.ObjectId
     ref: 'Player'
   date: Date
