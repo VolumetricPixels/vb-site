@@ -26,3 +26,5 @@ module.exports = (router) ->
   router.all '/query/data/:action', 'query#data'
   router.all '/query/players/:action', 'query#players'
   router.all '/query/servers/:action', 'query#servers'
+
+  router.all '*', '404'
