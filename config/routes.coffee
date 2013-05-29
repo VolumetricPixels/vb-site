@@ -17,6 +17,9 @@ module.exports = (router) ->
   router.get '/bans', 'bans'
   router.get '/bans/:id', 'bans#show'
 
+  router.get '/players', 'players'
+  router.get '/players/:name', 'players#show'
+
   router.get '/servers', 'servers'
   router.get '/servers/:id', 'servers#show'
 

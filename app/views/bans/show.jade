@@ -9,7 +9,7 @@ block content
       table.table.table-striped
         tr
           th Player
-          td= ban.player.name
+          td: a(href=ban.player.link)= ban.player.name
         tr
           th Server
           td
@@ -19,7 +19,7 @@ block content
           td= ban.reason
         tr
           th Banned by
-          td= ban.by.name
+          td: a(href=ban.player.link)= ban.by.name
         tr
           th Date
           td.date= ban.date

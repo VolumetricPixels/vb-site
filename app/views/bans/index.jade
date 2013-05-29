@@ -15,10 +15,10 @@ block content
       tbody
         each ban in bans
           tr
-            td= ban.player.name
+            td: a(href=ban.player.link)= ban.player.name
             td= ban.server.name
             td= ban.reason
             td.date= ban.date
-            td= ban.by.name
+            td: a(href=ban.by.link)= ban.by.name
             td
               a(href=ban.link) Show ban

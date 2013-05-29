@@ -1,0 +1,18 @@
+extends ../layouts/application
+
+block content
+  .row
+    .span12
+      h1 Players
+      hr
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th Show
+        tbody
+          each player in players
+            tr
+              td= player.name
+              td
+                a(href=player.link) Show player
