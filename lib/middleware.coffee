@@ -53,5 +53,7 @@ module.exports = (app) ->
     req.key = key
 
     Server.findOne {apikey: key}, (err, server) ->
-      req.server = server || null # Not sure if server can be undefined
+      unless server
+        return res.json 403, error: 'Invalid API key.'
+      req.server = server
       next()
