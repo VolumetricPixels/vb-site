@@ -27,7 +27,7 @@ module.exports = (done) ->
       player: albireox
       server: gemcraft
       reason: 'advertising obsidiancraft and griefing'
-      by: dyrus
+      issuer: dyrus
       date: new Date("2013-04-03 13:23:15")
       end: new Date("2013-04-04 13:23:15")
       global: true
