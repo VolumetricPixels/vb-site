@@ -28,6 +28,9 @@ x.use express.session secret: 'i dont think it matters if my secret is on github
 # Set up static files
 x.use express.static __dirname + '/../public'
 
+# Error handling
+x.use express.errorHandler()
+
 # Setup jade
 x.set 'view engine', 'jade'
 x.set 'view options', pretty: yes

@@ -1,4 +1,5 @@
 User = require '../app/models/user'
+Server = require '../app/models/server'
 
 module.exports = (app) ->
   # User session middleware
@@ -43,3 +44,14 @@ module.exports = (app) ->
       options.user = req.user || null
       _render.call res, view, options, fn
     next()
+
+  # Query API key middleware
+  app.use '/query', (req, res, next) ->
+    key = req.query.key
+    unless key
+      return res.json 422, error: 'No API key specified.'
+    req.key = key
+
+    Server.findOne {apikey: key}, (err, server) ->
+      req.server = server || null # Not sure if server can be undefined
+      next()

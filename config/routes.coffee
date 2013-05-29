@@ -19,3 +19,10 @@ module.exports = (router) ->
 
   router.get '/servers', 'servers'
   router.get '/servers/:id', 'servers#show'
+
+  # Query
+  router.all '/query', 'query'
+  router.all '/query/bans/:action', 'query#bans'
+  router.all '/query/data/:action', 'query#data'
+  router.all '/query/players/:action', 'query#players'
+  router.all '/query/servers/:action', 'query#servers'
