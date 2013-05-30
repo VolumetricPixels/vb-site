@@ -15,7 +15,6 @@ schema = new mongoose.Schema
     ref: 'Player'
   date: Date
   end: Date
-  global: Boolean
 
 schema.virtual('link').get -> "/bans/#{@_id}"
 
