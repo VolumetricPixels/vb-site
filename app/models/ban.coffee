@@ -18,8 +18,14 @@ schema = new mongoose.Schema
   date:
     type: Date
     required: yes
-  end: Date
+  end:
+    type: Date
+    default: null
 
 schema.virtual('link').get -> "/bans/#{@_id}"
+
+schema.virtual('permanent').get -> not @temporary
+
+schema.virtual('temporary').get -> @date isnt null
 
 module.exports = mongoose.model 'Ban', schema
