@@ -26,6 +26,6 @@ schema.virtual('link').get -> "/bans/#{@_id}"
 
 schema.virtual('permanent').get -> not @temporary
 
-schema.virtual('temporary').get -> @date isnt null
+schema.virtual('temporary').get -> @end isnt null
 
 module.exports = mongoose.model 'Ban', schema
