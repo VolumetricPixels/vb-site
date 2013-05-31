@@ -4,9 +4,11 @@ gravatar = require 'gravatar'
 mongoose = require 'mongoose'
 emailModule = require '../../lib/email'
 
+toLower = (v) -> v.toLowerCase()
+
 schema = new mongoose.Schema
-  username: type: String, required: yes, unique: yes
-  email: type: String, required: yes, unique: yes
+  username: type: String, required: yes, unique: yes, set: toLower
+  email: type: String, required: yes, unique: yes, set: toLower
   password: type: String, required: yes # Hash
   players: [
     type: mongoose.Schema.ObjectId
@@ -99,10 +101,5 @@ schema.methods.setPassword = (password, cb) ->
   bcrypt.hash password, 10, (err, hash) =>
     @password = hash
     @save cb
-
-schema.pre 'save', (next) ->
-  @username = @username.toLowerCase()
-  @email = @email.toLowerCase()
-  next()
 
 module.exports = mongoose.model 'User', schema 

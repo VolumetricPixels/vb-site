@@ -51,7 +51,11 @@ schema.statics.fromJSON = (server, json, cb) ->
       ban.save (e) ->
         cb e, ban
 
-schema.set 'toObject', getters: true
+schema.set 'toObject',
+  getters: true
+  transform: (doc, ret, opts) ->
+    delete ret.id
+    return
 
 schema.virtual('link').get -> "/bans/#{@_id}"
 
