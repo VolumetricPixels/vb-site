@@ -19,7 +19,10 @@ block content
           td= ban.reason
         tr
           th Issued by
-          td: a(href=ban.issuer.link)= ban.issuer.name
+          if ban.issuer
+            td: a(href=ban.issuer.link)= ban.issuer.name
+          else
+            td Server
         tr
           th Date
           td.date= ban.date

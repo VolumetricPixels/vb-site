@@ -19,6 +19,8 @@ block content
             td= ban.server.name
             td= ban.reason
             td.date= ban.date
-            td: a(href=ban.issuer.link)= ban.issuer.name
-            td
-              a(href=ban.link) Show ban
+            if ban.issuer
+              td: a(href=ban.issuer.link)= ban.issuer.name
+            else
+              td Server
+            td: a(href=ban.link) Show ban
