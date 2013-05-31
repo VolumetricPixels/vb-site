@@ -21,6 +21,7 @@ module.exports = (router) ->
   router.get '/players/:name', 'players#show'
 
   router.get '/servers', 'servers'
+  router.post '/servers', 'servers#index_post'
   router.get '/servers/:id', 'servers#show'
 
   # Query

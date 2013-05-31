@@ -10,6 +10,23 @@ module.exports =
 
       res.render 'servers/index', servers: servers
 
+  index_post: (req, res) ->
+    server = req.body.server
+    unless server
+      return res.send 400, 'No server specified'
+    
+    unless server.ip
+      return res.send 400, 'Please enter a server IP.'
+
+    server = new Server
+      name: server.name || null
+      ip: server.ip
+
+    server.generateKey ->
+      server.save (err) ->
+        if err
+          return res.send 400, err
+
   show: (req, res) ->
     Server.findOne(_id: @id).exec (err, server) ->
       if err or server is null
