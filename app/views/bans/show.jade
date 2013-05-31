@@ -2,7 +2,12 @@ extends ../layouts/application
 
 block content
   .row
-    h1 Ban against #{ban.player.name}
+    .span12
+      h1
+        a(href=ban.player.link)= ban.player.name
+        | 's ban on 
+        a(href=ban.server.link)= ban.server.name
+      hr
   .row
     .span4
       h2 Details
@@ -28,7 +33,10 @@ block content
           td.date= ban.date
         tr
           th End
-          td.date= ban.end
+          if ban.end
+            td.date= ban.end
+          else
+            td Permaban
     .span8
       h2 Proof
       p The proof is in the pudding
