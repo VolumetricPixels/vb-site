@@ -2,25 +2,27 @@ extends ../layouts/application
 
 block content
   .row
-    h1 Recent bans
-    table.table.table-striped
-      thead
-        tr
-          th Player
-          th Server
-          th Reason
-          th Date banned
-          th Issued by
-          th Show
-      tbody
-        each ban in bans
+    .span12
+      h1 Recent bans
+      hr
+      table.table.table-striped
+        thead
           tr
-            td: a(href=ban.player.link)= ban.player.name
-            td= ban.server.name
-            td= ban.reason
-            td.date= ban.date
-            if ban.issuer
-              td: a(href=ban.issuer.link)= ban.issuer.name
-            else
-              td Server
-            td: a(href=ban.link) Show ban
+            th Player
+            th Server
+            th Reason
+            th Date banned
+            th Issued by
+            th Show
+        tbody
+          each ban in bans
+            tr
+              td: a(href=ban.player.link)= ban.player.name
+              td= ban.server.name
+              td= ban.reason
+              td.date= ban.date
+              if ban.issuer
+                td: a(href=ban.issuer.link)= ban.issuer.name
+              else
+                td Server
+              td: a(href=ban.link) Show ban
