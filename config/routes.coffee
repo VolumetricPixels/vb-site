@@ -25,7 +25,7 @@ module.exports = (router) ->
 
   # Query
   router.get '/query', 'query'
-  router.get '/query/isGlobalBanned', 'query#isGlobalBanned'
+  router.get '/query/isBanned', 'query#isBanned'
   router.post '/query/ban', 'query#ban_post'
   router.post '/query/unban', 'query#unban_post'
   router.all '/query/*', 'query'

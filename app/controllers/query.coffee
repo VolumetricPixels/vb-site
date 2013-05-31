@@ -4,7 +4,7 @@ module.exports =
   index: (req, res) ->
     res.json 405, error: "You shouldn't be here."
 
-  isGlobalBanned: (req, res) ->
+  isBanned: (req, res) ->
     res.json 405, error: 'Unimplemented'
 
   ban_post: (req, res) ->
