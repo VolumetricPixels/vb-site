@@ -16,6 +16,9 @@ block content
           th Player
           td: a(href=ban.player.link)= ban.player.name
         tr
+          th Status
+          td: span(class="ban-status-#{ban.status}")= ban.status
+        tr
           th Server
           td: a(href=ban.server.link)= ban.server.name
         tr

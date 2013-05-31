@@ -3,24 +3,48 @@ Player = require './player'
 Server = require './server'
 
 schema = new mongoose.Schema
+  # Player banned
   player:
     type: mongoose.Schema.ObjectId
     ref: 'Player'
     required: yes
+
+  # Server that issued the ban
   server:
     type: mongoose.Schema.ObjectId
     ref: 'Server'
     required: yes
-  reason: String
+
+  # Ban reason
+  reason:
+    type: String
+    default: null
+    get: (s) -> s || 'Unspecified'
+
+  # Player who created the ban; null means banned from console
   issuer:
     type: mongoose.Schema.ObjectId
     ref: 'Player'
+    default: null
+  
+  # Date of ban start
   date:
     type: Date
     required: yes
+
+  # Date on which ban ends -- null is an indefinite ban
   end:
     type: Date
     default: null
+
+  # Status of the ban.
+  # unbanned - ban unbanned by server
+  # pending - banned on server, vb hasnt declared a verdict
+  # invalid - banned on server, vb considers ban invalid
+  # banned - ban approved by VB team
+  status:
+    type: String
+    default: 'pending'
 
 schema.statics.fromJSON = (server, json, cb) ->
   isValidDate = (d) ->
