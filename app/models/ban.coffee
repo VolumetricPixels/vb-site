@@ -1,6 +1,6 @@
 mongoose = require 'mongoose'
-require './player'
-require './server'
+Player = require './player'
+Server = require './server'
 
 schema = new mongoose.Schema
   player:
@@ -21,6 +21,37 @@ schema = new mongoose.Schema
   end:
     type: Date
     default: null
+
+schema.statics.fromJSON = (server, json, cb) ->
+  isValidDate = (d) ->
+    return false if Object::toString.call(d) isnt '[object Date]'
+    return !isNaN d.getTime()
+
+  Player.getPlayer json.player, (err, player) =>
+    if err
+      return cb "Player error: #{err}", null
+
+    Player.getPlayer json.issuer, (err, issuer) =>
+      date = new Date json.date
+      unless isValidDate date
+        date = new Date()
+
+      end = new Date json.end
+      unless isValidDate end
+        end = null
+
+      ban = new this
+        player: player
+        server: server
+        reason: json.reason || null
+        issuer: issuer # Null would mean banned by console
+        date: date
+        end: end
+
+      ban.save (e) ->
+        cb e, ban
+
+schema.set 'toObject', getters: true
 
 schema.virtual('link').get -> "/bans/#{@_id}"
 
