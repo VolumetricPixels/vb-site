@@ -18,14 +18,14 @@ module.exports =
     unless server.ip
       return res.send 400, 'Please enter a server IP.'
 
-    server = new Server
-      name: server.name || null
+    s = new Server
       ip: server.ip
+      desc: server.desc || null
 
-    server.generateKey ->
-      server.save (err) ->
-        if err
-          return res.send 400, err
+    s.save (err) ->
+      if err
+        return res.send 400, err
+      res.send 200
 
   show: (req, res) ->
     Server.findOne(_id: @id).exec (err, server) ->

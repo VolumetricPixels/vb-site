@@ -2,14 +2,26 @@ crypto = require 'crypto'
 mongoose = require 'mongoose'
 
 schema = new mongoose.Schema
-  name: type: String, default: null
   ip: type: String, required: yes
-  apikey: String
+  desc: type: String, default: null
+  apikey: type: String
 
-schema.statics.generateKey = (cb) ->
-  crypto.randomBytes 20, (ex, buf) ->
+schema.methods.generateKey = (cb) ->
+  crypto.randomBytes 20, (ex, buf) =>
     @apikey = buf.toString('base64').replace(/\//g, '_').replace(/\+/g, '-')
-    cb @apikey
+    model = @model @constructor.modelName
+    model.findOne {apikey: @apikey}, (err, doc) =>
+      if doc
+        @generateKey cb
+      else
+        cb @apikey
+
+schema.pre 'save', (next) ->
+  unless @apikey
+    @generateKey ->
+      next()
+  else
+    next()
 
 schema.virtual('link').get -> "/servers/#{@_id}"
 

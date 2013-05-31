@@ -6,7 +6,7 @@ block content
       h1
         a(href=ban.player.link)= ban.player.name
         | 's ban on 
-        a(href=ban.server.link)= ban.server.name
+        a(href=ban.server.link)= ban.server.ip
       hr
   .row
     .span4
@@ -20,7 +20,7 @@ block content
           td: span(class="ban-status-#{ban.status}")= ban.status
         tr
           th Server
-          td: a(href=ban.server.link)= ban.server.name
+          td: a(href=ban.server.link)= ban.server.ip
         tr
           th Reason
           td= ban.reason

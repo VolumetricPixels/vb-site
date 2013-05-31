@@ -8,13 +8,13 @@ block content
       table.table.table-striped
         thead
           tr
-            th Server Name
-            th IP
+            th Server
+            th Description
             th Show
         tbody
           each server in servers
             tr
-              td= server.name
               td= server.ip
+              td= server.desc
               td
                 a(href=server.link) Show server

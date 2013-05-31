@@ -13,14 +13,12 @@ module.exports = (done) ->
   dyrus = new Player name: 'Dyrus'
 
   gemcraft = new Server
-    name: 'GemCraft'
     ip: 'play.gemcraft.net'
-    apikey: 'x23fseklfsdfms'
+    desc: 'GemCraft!!!!! gems are truly outrageous'
   
   obsidiancraft = new Server
-    name: 'ObsidianCraft'
     ip: 'play.obsidiancraft.net'
-    apikey: '==2313ASDASD'
+    desc: 'ObsidianCraft || worst server NA'
 
   bans = [
     new Ban
@@ -31,7 +29,6 @@ module.exports = (done) ->
       date: new Date("2013-04-03 13:23:15")
       end: new Date("2013-04-04 13:23:15")
   ]
-
   
   test_user = new User
     username: 'test'

@@ -2,14 +2,16 @@ extends ../layouts/application
 
 block content
   .row
-    h1 #{server.name}
+    .span12
+      h1= server.ip
+      hr
   .row
     .span4
+      h2= server.ip
+      p= server.desc
+
       h2 Details
       table.table.table-striped
-        tr
-          th Name
-          td= server.name
         tr
           th Ban Count
           td= banCount

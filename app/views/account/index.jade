@@ -81,15 +81,15 @@ block content
         table.table.table-striped
           thead
             tr
-              th Name
               th IP
+              th Description
               th API Key
               th Actions
           tbody
             each server in user.servers
               tr
-                td: a(href=server.link)= server.name
-                td= server.ip
+                td: a(href=server.link)= server.ip
+                td= server.desc
                 td= server.apikey
                 td
                   a#editServer(href="#", data-server=server._id).btn

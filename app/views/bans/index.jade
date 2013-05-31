@@ -18,7 +18,7 @@ block content
           each ban in bans
             tr
               td: a(href=ban.player.link)= ban.player.name
-              td= ban.server.name
+              td: a(href=ban.server.link)= ban.server.ip
               td= ban.reason
               td.date= ban.date
               if ban.issuer
