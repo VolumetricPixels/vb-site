@@ -23,6 +23,6 @@ schema.pre 'save', (next) ->
   else
     next()
 
-schema.virtual('link').get -> "/servers/#{@_id}"
+schema.virtual('link').get -> "/servers/#{@ip}"
 
 module.exports = mongoose.model 'Server', schema

@@ -22,7 +22,7 @@ module.exports = (router) ->
 
   router.get '/servers', 'servers'
   router.post '/servers', 'servers#index_post'
-  router.get '/servers/:id', 'servers#show'
+  router.get '/servers/:ip', 'servers#show'
 
   # Query
   router.get '/query', 'query'
