@@ -24,23 +24,23 @@
     },
 
     "dependencies": {
-        "express": "3.1.1",
-        "jade": "0.28.2",
-        "stylus": "0.32.1",
-        "coffee-script": "1.6.2",
-        "connect-assets": "2.4.1",
-        "mongoose": "3.6.4",
-        "async": "0.2.6",
-        "less": "1.3.3",
+        "async": "0.2.9",
         "bcrypt": "0.7.5",
-        "sendgrid": "0.2.1",
+        "coffee-script": "1.6.2",
+        "connect-assets": "2.4.3",
+        "express": "3.2.5",
         "gravatar": "1.0.6",
-        "nodetime": "0.8.12"
+        "jade": "0.31.1",
+        "less": "1.3.3",
+        "mongoose": "3.6.11",
+        "nodetime": "0.8.12",
+        "sendgrid": "0.2.7",
+        "stylus": "0.32.1"
     },
 
     "devDependencies": {
-        "should": "*",
-        "mocha": "*"
+        "mocha": "1.10.0",
+        "should": "1.2.2"
     },
 
     "engines": {
