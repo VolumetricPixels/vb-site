@@ -1,0 +1,20 @@
+form(action="", method="post").form-horizontal
+  .control-group
+    label(for="ip").control-label Server IP
+    .controls
+      if server.ip
+        input#ip(type="text", value=server.ip)
+      else
+        input#ip(type="text" placeholder="Server IP")
+
+  .control-group
+    label(for="desc").control-lavel Description
+    .controls
+      textarea#desc(width="100%", rows="3")
+        if server.desc
+        |= server.desc
+
+  .control-group
+    .controls
+      .form-actions
+        button(type="submit").btn.btn-primary Save Changes

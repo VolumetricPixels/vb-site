@@ -29,7 +29,7 @@ module.exports = (done) ->
       date: new Date("2013-04-03 13:23:15")
       end: new Date("2013-04-04 13:23:15")
   ]
-  
+
   test_user = new User
     username: 'test'
     email: 'test@gmail.com'

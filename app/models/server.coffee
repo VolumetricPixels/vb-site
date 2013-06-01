@@ -36,4 +36,7 @@ schema.pre 'save', (next) ->
 
 schema.virtual('link').get -> "/servers/#{@ip}"
 
+schema.virtual('editLink').get -> "/servers/#{@ip}/edit"
+schema.virtual('editLink').get -> "/servers/#{@ip}/new"
+
 module.exports = mongoose.model 'Server', schema

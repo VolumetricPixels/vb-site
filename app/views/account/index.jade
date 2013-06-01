@@ -82,17 +82,15 @@ block content
           thead
             tr
               th IP
-              th Description
               th API Key
               th Actions
           tbody
             each server in user.servers
               tr
                 td: a(href=server.link)= server.ip
-                td= server.desc
-                td= server.apikey
+                td: input(type="text", value=server.apikey, readOnly)
                 td
-                  a#editServer(href="#", data-server=server._id).btn
+                  a#editServer(href=server.editLink, data-server=server._id).btn
                     i.icon-pencil
                     | &nbsp;Edit
                   | &nbsp;
