@@ -27,6 +27,23 @@ module.exports =
         return res.send 400, err
       res.send 200
 
+  edit: (req, res) ->
+    Server.findOne(ip: @ip).exec (err, server) ->
+      if err or server is null
+        res.status(404).render 'layouts/404'
+        return
+
+      res.render 'servers/edit', server: server
+
+  edit_post: (req, res) ->
+    res.send 405, 'Unimplemented'
+
+  new: (req, res) ->
+    res.render 'servers/new'
+
+  new_post: (req, res) ->
+    res.send 405, 'Unimplemented'
+
   show: (req, res) ->
     Server.findOne(ip: @ip).exec (err, server) ->
       if err or server is null
