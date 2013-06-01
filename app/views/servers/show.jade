@@ -23,7 +23,7 @@ block content
             th Player
             th Reason
             th Date banned
-            th Banned by
+            th Issued by
             th Show
         tbody
           each ban in bans
@@ -31,6 +31,9 @@ block content
               td: a(href=ban.player.link)= ban.player.name
               td= ban.reason
               td.date= ban.date
-              td= ban.admin
+              if ban.issuer
+                td: a(href=ban.issuer.link)= ban.issuer.name
+              else
+                td Server
               td
                 a(href=ban.link) Show ban
