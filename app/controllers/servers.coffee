@@ -64,7 +64,7 @@ module.exports =
 
     s.save (err) ->
       if err
-        if err instanceof ValidationError and err.errors.ip
+        if err.constructor.name is 'ValidationError' and err.errors.ip
           return res.send 400, 'Error: ' + err.errors.ip.type
         else
           return res.send 400, 'Error: ' + err
