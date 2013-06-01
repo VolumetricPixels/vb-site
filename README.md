@@ -1,4 +1,6 @@
-# vb-site [![Build Status](https://travis-ci.org/VolumetricPixels/vb-site.png)](https://travis-ci.org/VolumetricPixels/vb-site)
+# vb-site
+[![Build Status](https://travis-ci.org/VolumetricPixels/vb-site.png)](https://travis-ci.org/VolumetricPixels/vb-site)
+[![Dependency Status](https://gemnasium.com/VolumetricPixels/vb-site.png)](https://gemnasium.com/VolumetricPixels/vb-site)
 
 The code to the VolumetricBans website.
 
