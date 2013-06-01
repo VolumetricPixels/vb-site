@@ -19,7 +19,7 @@ npm test
 It is very easy to run the website on your own computer. You just need to:
 
 1. Install [node.js](http://nodejs.org)
-2. Install coffee-script with `npm install -g coffeescript`
+2. Install coffee-script with `npm install -g coffee-script`
 3. Install [MongoDB](http://www.mongodb.org/) and run it
 4. Install dependencies - `npm install -l`
 5. Seed the database - `cake db:seed`
