@@ -1,18 +1,23 @@
-form(action="", method="post").form-horizontal
+#serverErrors
+form#server(action="", method="post").form-horizontal
   .control-group
     label(for="ip").control-label Server IP
     .controls
       if server
-        input#ip(type="text", value=server.ip)
+        input#ip(type="text", value=server.ip, name="server[ip]")
       else
-        input#ip(type="text", placeholder="Server IP")
+        input#ip(type="text", placeholder="Server IP", name="server[ip]")
 
   .control-group
     label(for="desc").control-label Description
     .controls
-      textarea#desc(width="100%", rows="3")
+      textarea#desc(width="100%", rows="3", name="server[desc]")
         if server
           | #{server.desc}
 
   .form-actions
     button(type="submit").btn.btn-primary Save Changes
+script
+  $(function(){
+    new Form('server', '#{target}');
+  });

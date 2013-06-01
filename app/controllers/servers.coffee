@@ -28,6 +28,9 @@ module.exports =
       res.send 200
 
   edit: (req, res) ->
+    unless req.user
+      return res.redirect "/login?target=#{req.url}"
+
     Server.findOne(ip: @ip).exec (err, server) ->
       if err or server is null
         res.status(404).render 'layouts/404'
@@ -36,13 +39,39 @@ module.exports =
       res.render 'servers/edit', server: server
 
   edit_post: (req, res) ->
+    unless req.user
+      return res.send 'Not logged in', 200
+
     res.send 405, 'Unimplemented'
 
   new: (req, res) ->
-    res.render 'servers/new'
+    unless req.user
+      return res.redirect "/login?target=#{req.url}"
+
+    res.render 'servers/new', target: (req.query.target || '/account')
 
   new_post: (req, res) ->
-    res.send 405, 'Unimplemented'
+    unless req.user
+      return res.send 'Not logged in', 200
+
+    server = req.body.server
+    unless server
+      return res.send 400, 'Unspecified server.'
+
+    s = new Server
+      ip: server.ip
+      desc: server.desc
+
+    s.save (err) ->
+      if err
+        if err instanceof ValidationError and err.errors.ip
+          return res.send 400, 'Error: ' + err.errors.ip.type
+        else
+          return res.send 400, 'Error: ' + err
+
+      req.user.servers.push s
+      req.user.save ->
+        res.send 200
 
   show: (req, res) ->
     Server.findOne(ip: @ip).exec (err, server) ->
