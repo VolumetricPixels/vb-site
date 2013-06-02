@@ -2,7 +2,7 @@ crypto = require 'crypto'
 mongoose = require 'mongoose'
 
 schema = new mongoose.Schema
-  ip: type: String, required: yes
+  ip: type: String, required: yes, unique: yes
   desc: type: String, default: null
   apikey: type: String
 
