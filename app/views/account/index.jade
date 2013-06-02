@@ -75,9 +75,7 @@ block content
                     i.icon-trash
                     | &nbsp;Delete
     .span8
-
       h2 Servers
-        a
       if user.servers
         table.table.table-striped
           thead
@@ -98,3 +96,9 @@ block content
                   a#deleteServer(href="#", data-server=server._id).btn.btn-danger
                     i.icon-trash
                     | &nbsp;Delete
+      else
+        p You don't own any servers.
+
+      a(href="/servers/new").btn.btn-success
+        i.icon-plus-sign
+        | &nbsp;Add Server
