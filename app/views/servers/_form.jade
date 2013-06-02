@@ -1,5 +1,7 @@
 #serverErrors
 form#server(action="", method="post").form-horizontal
+  if server
+    input(type="hidden", name="server[_id]", value=server._id)
   .control-group
     label(for="ip").control-label Server IP
     .controls

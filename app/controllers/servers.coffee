@@ -36,13 +36,37 @@ module.exports =
         res.status(404).render 'layouts/404'
         return
 
-      res.render 'servers/edit', server: server
+      res.render 'servers/edit', server: server, target: (req.query.target || '/account')
 
   edit_post: (req, res) ->
     unless req.user
       return res.send 'Not logged in', 200
 
-    res.send 405, 'Unimplemented'
+    server = req.body.server
+    unless server
+      return res.send 400, 'Unspecified server.'
+
+    # Check if user is spoofing who they are
+    mine = no
+    for sv in req.user.servers
+      if sv._id.toString() is server._id
+        mine = yes
+        break
+    unless mine
+      return res.send 400, 'Hacking attempt detected. Your IP has been logged.'
+
+    Server.findById server._id, (err, s) ->
+      s.ip = server.ip
+      s.desc = server.desc
+
+      s.save (err) ->
+        if err
+          if err.constructor.name is 'ValidationError' and err.errors.ip
+            return res.send 400, 'Error: ' + err.errors.ip.type
+          else
+            return res.send 400, 'Error: ' + err
+
+        res.send 200
 
   new: (req, res) ->
     unless req.user
