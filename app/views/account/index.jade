@@ -2,7 +2,7 @@ extends ../layouts/application
 
 block header
   != js('form/jquery.form')
-  script
+  script.
     var forms;
     $(function(){
       forms = {
@@ -77,6 +77,7 @@ block content
     .span8
 
       h2 Servers
+        a
       if user.servers
         table.table.table-striped
           thead

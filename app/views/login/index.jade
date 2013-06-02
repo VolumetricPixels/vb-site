@@ -2,7 +2,7 @@ extends ../layouts/application
 
 block header
   != js('form/jquery.form')
-  script
+  script.
     $(function(){
       new Form('login', '#{target}');
     });
