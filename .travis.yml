@@ -1,3 +1,7 @@
+env:
+    - NODE_ENV=test
+services:
+    - mongodb
 language: node_js
 node_js:
-  - "0.10"
+    - "0.10"

@@ -1,4 +1,9 @@
 module.exports =
+  test:
+    port: 3000
+    dburl: 'mongodb://localhost/test'
+    fastAssets: no
+
   development:
     port: 3000
     dburl: 'mongodb://localhost/test'

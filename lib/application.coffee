@@ -4,9 +4,8 @@ x = app.x = express()
 
 # Setup the config
 env = x.settings.env
-app.env = env = 'development' unless env
-config = require('../config/config')[env]
-config = require('../config/config')['development'] unless config
+app.env = env || 'development'
+config = require('../config/config')[env || 'development']
 app.config = config
 
 # Use connect-assets

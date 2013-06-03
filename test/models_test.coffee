@@ -1,4 +1,15 @@
+mongoose = require 'mongoose'
+
+seeds = require '../db/seeds'
+trample = require '../db/trample'
+
 describe 'models/', ->
+  before (done) ->
+    mongoose.connect require('../config/config')[process.env.NODE_ENV || 'development'].dburl
+    trample done
+
+  beforeEach seeds
+
   describe 'user', ->
     User = require '../app/models/user'
 
@@ -8,3 +19,9 @@ describe 'models/', ->
         testUser.checkPassword 'complicated', (err, res) ->
           res.should.equal true
           done()
+
+  afterEach trample
+
+  after (done) ->
+    mongoose.disconnect()
+    done()

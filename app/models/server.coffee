@@ -1,7 +1,7 @@
 crypto = require 'crypto'
 mongoose = require 'mongoose'
 
-Ban = require 'ban'
+Ban = require './ban'
 
 schema = new mongoose.Schema
   ip: type: String, required: yes, unique: yes
