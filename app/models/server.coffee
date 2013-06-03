@@ -1,6 +1,8 @@
 crypto = require 'crypto'
 mongoose = require 'mongoose'
 
+Ban = require 'ban'
+
 schema = new mongoose.Schema
   ip: type: String, required: yes, unique: yes
   desc: type: String, default: null
@@ -32,6 +34,10 @@ schema.pre 'save', (next) ->
     @generateKey ->
       next()
   else
+    next()
+
+schema.pre 'remove', (next) ->
+  Ban.find({server: @_id}).remove ->
     next()
 
 schema.virtual('link').get -> "/servers/#{@ip}"
