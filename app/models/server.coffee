@@ -1,8 +1,6 @@
 crypto = require 'crypto'
 mongoose = require 'mongoose'
 
-Ban = require './ban'
-
 schema = new mongoose.Schema
   ip: type: String, required: yes, unique: yes
   desc: type: String, default: null
@@ -37,6 +35,7 @@ schema.pre 'save', (next) ->
     next()
 
 schema.pre 'remove', (next) ->
+  Ban = mongoose.model 'Ban'
   Ban.find({server: @_id}).remove ->
     next()
 
