@@ -1,14 +1,14 @@
 mongoose = require 'mongoose'
 
-seeds = require '../db/seeds'
+seed = require '../db/seed'
 trample = require '../db/trample'
 
 describe 'models/', ->
-  before (done) ->
+  before (done) -> 
     mongoose.connect require('../config/config')[process.env.NODE_ENV || 'development'].dburl
-    trample done
+    done()
 
-  beforeEach seeds
+  beforeEach seed
 
   describe 'user', ->
     User = require '../app/models/user'
@@ -23,5 +23,5 @@ describe 'models/', ->
   afterEach trample
 
   after (done) ->
-    mongoose.disconnect()
-    done()
+    mongoose.disconnect ->
+      done()

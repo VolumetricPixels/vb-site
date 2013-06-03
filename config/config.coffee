@@ -6,7 +6,7 @@ module.exports =
 
   development:
     port: 3000
-    dburl: 'mongodb://localhost/test'
+    dburl: 'mongodb://localhost/dev'
     fastAssets: no
 
   production:
