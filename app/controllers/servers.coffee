@@ -27,6 +27,18 @@ module.exports =
         return res.send 400, err
       res.send 200
 
+  delete_post: (req, res) ->
+    server = req.body.server
+    unless server
+      return res.send 400, 'Unspecified server.'
+
+    unless req.user.ownsServer server._id
+      return res.send 400, 'Hacking attempt detected. Your IP has been logged.'
+
+    Server.findById(server._id).remove (err) ->
+      if err
+        return res.send 400, 'Error: ' + err
+      res.send 200
   edit: (req, res) ->
     unless req.user
       return res.redirect "/login?target=#{req.url}"
@@ -46,13 +58,7 @@ module.exports =
     unless server
       return res.send 400, 'Unspecified server.'
 
-    # Check if user is spoofing who they are
-    mine = no
-    for sv in req.user.servers
-      if sv._id.toString() is server._id
-        mine = yes
-        break
-    unless mine
+    unless req.user.ownsServer server._id
       return res.send 400, 'Hacking attempt detected. Your IP has been logged.'
 
     Server.findById server._id, (err, s) ->

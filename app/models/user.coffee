@@ -102,4 +102,17 @@ schema.methods.setPassword = (password, cb) ->
     @password = hash
     @save cb
 
+schema.methods.ownsServer = (id) ->
+  ### Checks if the user owns the server with the given ID ###
+  id = id.toString()
+  for sv in @servers
+    if sv._id
+      sid = sv._id.toString()
+    else
+      sid = sv.toString()
+
+    if sid is id
+      return yes
+  return no
+
 module.exports = mongoose.model 'User', schema 
