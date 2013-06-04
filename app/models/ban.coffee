@@ -1,6 +1,4 @@
 mongoose = require 'mongoose'
-Player = require './player'
-Server = require './server'
 
 schema = new mongoose.Schema
   # Player banned
@@ -47,6 +45,8 @@ schema = new mongoose.Schema
     default: 'pending'
 
 schema.statics.fromJSON = (server, json, cb) ->
+  Player = mongoose.model 'Player'
+
   isValidDate = (d) ->
     return false if Object::toString.call(d) isnt '[object Date]'
     return !isNaN d.getTime()
