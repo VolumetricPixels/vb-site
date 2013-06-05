@@ -6,8 +6,13 @@ module.exports =
     res.json 405, error: "You shouldn't be here."
 
   isBanned: (req, res) ->
-    res.json 405, error: 'Unimplemented'
+    unless req.query.player
+      return res.json 422, error: 'Player must be specified.'
 
+    Player.getPlayer req.query.player, (e, player) ->
+      player.isBanned req.server, (e, b) ->
+        res.json 200, result: b
+ 
   ban_post: (req, res) ->
     Ban.fromJSON req.server, req.body, (err, ban) ->
       return res.json 422, error: err if err
