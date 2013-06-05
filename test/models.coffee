@@ -10,6 +10,7 @@ describe 'models/', ->
 
   beforeEach seed
 
+  require './models/player'
   require './models/server'
   require './models/user'
 

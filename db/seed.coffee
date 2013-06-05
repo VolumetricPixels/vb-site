@@ -7,49 +7,69 @@ Server = require '../app/models/server'
 User = require '../app/models/user'
 
 module.exports = (done) ->
-  albireox = new Player name: 'albireox'
-  dzineit = new Player name: 'dzineit'
-  maxorq = new Player name: 'Maxorq'
-  dyrus = new Player name: 'Dyrus'
+  p =
+    albireox: new Player
+      name: 'albireox'
+    dzineit: new Player
+      name: 'dzineit'
+    maxorq: new Player
+      name: 'Maxorq'
+    dyrus: new Player
+      name: 'Dyrus'
 
-  gemcraft = new Server
-    ip: 'play.gemcraft.net'
-    desc: 'GemCraft!!!!! gems are truly outrageous'
-  
-  obsidiancraft = new Server
-    ip: 'play.obsidiancraft.net'
-    desc: 'ObsidianCraft || worst server NA'
+  s =
+    gemcraft: new Server
+      ip: 'play.gemcraft.net'
+      desc: 'GemCraft!!!!! gems are truly outrageous'
+
+    obsidiancraft: new Server
+      ip: 'play.obsidiancraft.net'
+      desc: 'ObsidianCraft || worst server NA'
+      strictness: 3
 
   bans = [
     new Ban
-      player: albireox
-      server: gemcraft
+      player: p.albireox
+      server: s.gemcraft
       reason: 'advertising obsidiancraft and griefing'
-      issuer: dyrus
+      issuer: p.dyrus
       date: new Date("2013-04-03 13:23:15")
       end: new Date("2013-04-04 13:23:15")
+
+    new Ban
+      player: p.albireox
+      server: s.gemcraft
+      reason: 'this guy is annoying'
+      issuer: p.dyrus
+      date: new Date("2012-05-03 13:23:15")
+      end: new Date("2013-05-25 13:23:15")
+
+    new Ban
+      player: p.albireox
+      server: s.gemcraft
+      reason: 'this guy is super annoying'
+      issuer: p.dyrus
+      date: new Date("2012-06-03 13:23:15")
+      end: null
   ]
 
-  test_user = new User
-    username: 'test'
-    email: 'test@gmail.com'
-    password: hash 'passw0rd'
-    players: [albireox]
-    servers: [obsidiancraft]
+  u =
+    test: new User
+      username: 'test'
+      email: 'test@gmail.com'
+      password: hash 'passw0rd'
+      players: [p.albireox]
+      servers: [s.obsidiancraft]
 
-  async.parallel [
-    (cb) -> albireox.save cb,
-    (cb) -> dzineit.save cb,
-    (cb) -> maxorq.save cb,
-    (cb) -> dyrus.save cb,
+  items = []
 
-    (cb) -> gemcraft.save cb,
-    (cb) -> obsidiancraft.save cb,
+  items.push v for own k, v of p
+  items.push v for own k, v of s
+  items.push ban for ban in bans
+  items.push v for own k, v of u
 
-    (cb) -> test_user.save cb
-  ], (err, results) ->
-    async.forEach bans, (item, callback) ->
-      item.save callback
-    , done
+  async.forEach items, (item, callback) ->
+    item.save callback
+  , done
 
 hash = (password) -> bcrypt.hashSync password, bcrypt.genSaltSync(10)

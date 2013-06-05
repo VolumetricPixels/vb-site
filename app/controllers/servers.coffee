@@ -39,6 +39,7 @@ module.exports =
       if err
         return res.send 400, 'Error: ' + err
       res.send 200
+
   edit: (req, res) ->
     unless req.user
       return res.redirect "/login?target=#{req.url}"

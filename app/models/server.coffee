@@ -5,6 +5,7 @@ schema = new mongoose.Schema
   ip: type: String, required: yes, unique: yes
   desc: type: String, default: null
   apikey: type: String
+  strictness: type: Number, default: 1
 
 schema.methods.generateKey = (cb) ->
   crypto.randomBytes 20, (ex, buf) =>
