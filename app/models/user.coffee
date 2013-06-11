@@ -10,6 +10,8 @@ schema = new mongoose.Schema
   username: type: String, required: yes, unique: yes, set: toLower
   email: type: String, required: yes, unique: yes, set: toLower
   password: type: String, required: yes # Hash
+  role: type: String, required: yes, default: 'user'
+
   players: [
     type: mongoose.Schema.ObjectId
     ref: 'Player'
